@@ -1,0 +1,59 @@
+
+# ============================================================
+# SPT Model — Configuration
+# ============================================================
+
+data:
+  stocks:
+    - "HDFCBANK.NS"
+    - "ICICIBANK.NS"
+    - "SBIN.NS"
+    - "RELIANCE.NS"
+    - "TCS.NS"
+    - "INFY.NS"
+    - "ITC.NS"
+    - "LT.NS"
+    - "KOTAKBANK.NS"
+    - "AXISBANK.NS"
+    - "BHARTIARTL.NS"
+    - "ADANIENT.NS"
+    - "POWERGRID.NS"
+    - "NESTLEIND.NS"
+    - "BAJAJFINSV.NS"
+    - "HCLTECH.NS"
+    - "JSWSTEEL.NS"
+    - "TATASTEEL.NS"
+    - "INDUSINDBK.NS"
+    - "DRREDDY.NS"
+  start_date: "2005-01-01"
+  train_end: "2020-12-31"
+  test_start: "2021-01-01"
+  cache_dir: "data/cache"
+
+model:
+  n_features: 8
+  hidden_dims: [64, 32]
+  dropout: 0.2
+
+training:
+  epochs: 1000
+  lr: 0.005
+  lr_scheduler: "cosine"       # cosine | cosine_warm_restarts
+  lr_min: 1.0e-5
+  l2_lambda: 1.0e-4
+  dd_lambda: 0.1
+  patience: 150                # early stopping patience
+  seed: 42
+  batch_all: true              # use full dataset per step (no mini-batch)
+
+portfolio:
+  rebalance_freq: 21           # days between rebalances
+  min_weight: 0.02
+  max_weight: 0.20
+  transaction_cost: 0.001      # 0.1% per turnover
+
+output:
+  checkpoint_dir: "checkpoints"
+  metrics_dir: "metrics"
+  log_dir: "logs"
+  sharpe_threshold: 0.5        # CI will fail if Sharpe < this

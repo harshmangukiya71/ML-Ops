@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Data cache (large parquet files — don't commit raw data)
+data/
+
+# Trained model checkpoints (can be large)
+checkpoints/
+
+# Run outputs
+metrics/
+logs/
+outputs/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# pytest
+.pytest_cache/
+htmlcov/
+.coverage
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,73 @@
+
+# ============================================================
+# Functional SPT — Configuration
+# ============================================================
+
+data:
+  stocks:
+    - "HDFCBANK.NS"
+    - "ICICIBANK.NS"
+    - "SBIN.NS"
+    - "RELIANCE.NS"
+    - "TCS.NS"
+    - "INFY.NS"
+    - "ITC.NS"
+    - "LT.NS"
+    - "KOTAKBANK.NS"
+    - "AXISBANK.NS"
+    - "BHARTIARTL.NS"
+    - "ADANIENT.NS"
+    - "POWERGRID.NS"
+    - "NESTLEIND.NS"
+    - "BAJAJFINSV.NS"
+    - "HCLTECH.NS"
+    - "JSWSTEEL.NS"
+    - "TATASTEEL.NS"
+    - "INDUSINDBK.NS"
+    - "DRREDDY.NS"
+  start_date: "2005-01-01"
+  split_date: "2020-01-01"
+  cache_dir: "data/cache"
+
+features:
+  momentum_window: 20
+  vol_window: 20
+  rank_alpha: 2.0              # amplification power for rank transform
+  market_weight_alpha: 0.5     # mix between market weight rank and momentum rank
+  use_garch: true
+
+garch:
+  p: 1
+  q: 1
+
+model:
+  hidden_dim: 32
+  output_dim: 16
+  activation: "tanh"
+
+training:
+  epochs: 2000
+  lr: 0.001
+  lr_scheduler: "cosine_warm_restarts"
+  T_0: 200
+  T_mult: 2
+  lr_min: 1.0e-5
+  lambda_smooth: 3.0
+  gamma: 3.0
+  sharpe_lambda: 0.5
+  patience: 200
+  seed: 42
+
+portfolio:
+  holding_days: 21
+  vol_target: 0.15
+  vol_scaling_min: 0.5
+  vol_scaling_max: 2.0
+  transaction_cost: 0.001
+  garch_penalty: 0.3
+
+output:
+  checkpoint_dir: "checkpoints"
+  metrics_dir: "metrics"
+  log_dir: "logs"
+  sharpe_threshold: 0.8        # CI will fail if Sharpe < this
