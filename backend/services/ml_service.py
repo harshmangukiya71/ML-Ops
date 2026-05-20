@@ -29,8 +29,6 @@ _ROOT = Path(__file__).parents[2]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from src.data.downloader import download_prices
-from src.data.features import build_features_functional_spt
 from src.models.functional_spt import FunctionalSPT
 from src.portfolio.rebalancing import apply_rebalancing_functional
 from src.portfolio.transaction_cost import apply_transaction_cost
